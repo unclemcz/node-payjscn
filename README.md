@@ -13,7 +13,7 @@ payjs.cn的nodejs封装。关于payjs，[可以参考这里](https://help.payjs.
 支持nodejs8以上版本，后续改完签名算法后，会调整为nodejs4以上，需要依赖superagent。
 ## 使用说明
 请参考samples.js
-#### 1、初始化
+#### 初始化
 修改配置文件config.js：
 ```
 var payjskey = ''; //payjs的授权码
@@ -24,7 +24,7 @@ var payjsmchid = ''; //payjs的商户码
 var cfg = require("./config.js"); 
 var pay = require("./pay.js");
 ```
-#### 2、扫码支付（主扫）
+#### 扫码支付（主扫）
 构建入参：
 ```
 var params = {
@@ -44,20 +44,7 @@ pay.native(params,function (msg) {
     /**TODO 这里处理业务逻辑 */
 });
 ```
-#### 3、异步通知的签名校验
-pay.notifyCheck()返回bool类型，校验成功返回true，否则返回false
-```
-var params=req.body; //获取post的参数
-if(pay.notifyCheck(params)==true){
-  //执行业务逻辑，成功后返回200
-    res.status(200); //注意要业务逻辑成功后返回
-}else{
-  //校验失败
-  res.status(404);
-}
-```
-
-#### 4、付款码支付（被扫）
+#### 付款码支付（被扫）
 构建入参：
 ```
 var params = {
@@ -77,6 +64,76 @@ pay.micropay(params,function (msg) {
       /**TODO 这里处理业务逻辑 */
   });
 ```
+#### 订单查询接口
+构建参数：
+```
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+```
+调用：
+```
+pay.check(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+```
+#### 订单关闭接口
+构建参数：
+```
+//截至2019-03-28本猿测试时，payjs_order_id为空会返回{} 测试时请注意
+var params = {
+  'payjs_order_id': '123456789'     //PAYJS 平台订单号
+};
+```
+调用：
+```
+pay.close(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+```
+#### 撤销订单接口
+构建参数：
+```
+//截至2019-03-28本猿测试时，找不到订单的时候会返回{} 请做好代码兼容
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+```
+调用：
+```
+pay.reverse(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+```
+#### 退款接口
+构建参数：
+```
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+```
+调用：
+```
+pay.refund(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+```
+#### 异步通知的签名校验
+pay.notifyCheck()返回bool类型，校验成功返回true，否则返回false
+```
+var params=req.body; //获取post的参数
+if(pay.notifyCheck(params)==true){
+  //执行业务逻辑，成功后返回200
+    res.status(200); //注意要业务逻辑成功后返回
+}else{
+  //校验失败
+  res.status(404);
+}
+```
 
-#### 5、其他接口待补充
+#### 其他接口待补充
 ......
