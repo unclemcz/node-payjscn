@@ -53,8 +53,8 @@ if(pay.notifyCheck(params)==true){
 ```
 
 #### 4、付款码支付（被扫）
-```
 构建入参：
+```
 var params = {
     'mchid': cfg.payjsmchid,     //商户号
     'total_fee': 1,              //金额。单位：分
