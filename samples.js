@@ -6,7 +6,7 @@ var pay = require("./pay.js");
 
 //以下为调用示例
 //参数详细请参考payjs官方文档：https://help.payjs.cn/
-//1、Native 扫码支付（主扫） API
+//Native 扫码支付（主扫） API
 var params = {
   'mchid': cfg.payjsmchid,     //商户号
   'total_fee': 1,              //金额。单位：分
@@ -20,7 +20,7 @@ pay.native(params,function (msg) {
     /**TODO 这里处理业务逻辑 */
 });
 
-//2、付款码支付（被扫） API
+//付款码支付（被扫） API
 var params = {
     'mchid': cfg.payjsmchid,     //商户号
     'total_fee': 1,              //金额。单位：分
@@ -29,8 +29,45 @@ var params = {
     'attach': '自定义数据',       //用户自定义数据，在notify的时候会原样返回
     'auth_code': ''              //扫码支付授权码，设备读取用户微信中的条码或者二维码信息(注：用户刷卡条形码规则：18位纯数字，以10、11、12、13、14、15开头)
   };
-  pay.micropay(params,function (msg) {
-      console.log(msg);
-      /**TODO 这里处理业务逻辑 */
-  });
-  
+pay.micropay(params,function (msg) {
+    console.log(msg);
+    /**TODO 这里处理业务逻辑 */
+});
+
+//订单查询接口
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+pay.check(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+
+//订单关闭接口  
+//截至2019-03-28本猿测试时，payjs_order_id为空会返回{} 测试时请注意
+var params = {
+  'payjs_order_id': '123456789'     //PAYJS 平台订单号
+};
+pay.close(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+
+//撤销订单接口
+//截至2019-03-28本猿测试时，找不到订单的时候会返回{} 请做好代码兼容
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+pay.reverse(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});
+
+//退款接口
+var params = {
+  'payjs_order_id': ''     //PAYJS 平台订单号
+};
+pay.refund(params,function (msg) {
+  console.log(msg);
+  /**TODO 这里处理业务逻辑 */
+});

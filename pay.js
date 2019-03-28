@@ -67,8 +67,65 @@ function micropay(params,callback) {
   });
 }
 
+//订单查询接口
+function check(params,callback) {
+  request.post(urlcheck)
+  .send(signature(params))
+  .end(function (err,res) {
+    if(!err){
+      callback(res.body);
+    }else{
+      console.log(err);
+      callback({'return_code':0,'msg':'本地调用出错'});
+    }
+  });
+}
+
+//关闭订单接口
+function close(params,callback) {
+  request.post(urlclose)
+  .send(signature(params))
+  .end(function (err,res) {
+    if(!err){
+      callback(res.body);
+    }else{
+      console.log(err);
+      callback({'return_code':0,'msg':'本地调用出错'});
+    }
+  });
+}
+
+//撤销订单接口
+function reverse(params,callback) {
+  request.post(urlreverse)
+  .send(signature(params))
+  .end(function (err,res) {
+    if(!err){
+      callback(res.body);
+    }else{
+      console.log(err);
+      callback({'return_code':0,'msg':'本地调用出错'});
+    }
+  });
+}
+
+//退款接口
+function refund(params,callback) {
+  request.post(urlrefund)
+  .send(signature(params))
+  .end(function (err,res) {
+    if(!err){
+      callback(res.body);
+    }else{
+      console.log(err);
+      callback({'return_code':0,'msg':'本地调用出错'});
+    }
+  });
+}
 
 
+
+//异步通知的签名校验
 function notifyCheck(params) {
   var originSign = params["sign"];
   delete params["sign"];
@@ -76,9 +133,10 @@ function notifyCheck(params) {
 }
 
 
-//测试
-
-
 exports.native=native;//扫码支付
 exports.micropay=micropay;//付款码支付
+exports.check=check;//订单查询接口
+exports.close=close;//订单关闭接口
+exports.reverse=reverse;//撤销订单接口
+exports.refund=refund;//退款接口
 exports.notifyCheck=notifyCheck;//异步通知的数据校验
