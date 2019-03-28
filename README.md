@@ -1,7 +1,7 @@
 # node-payjscn接口文档
 
-![image](https://img.shields.io/badge/nodejs-%3E%3D8-blue.svg)
-![image](https://img.shields.io/badge/%E4%BE%9D%E8%B5%96-superagent-brightgreen.svg)
+[![image](https://img.shields.io/badge/nodejs-%3E%3D8-blue.svg)](https://www.nodeapp.cn/)
+[![image](https://img.shields.io/badge/%E4%BE%9D%E8%B5%96-superagent-brightgreen.svg)](https://www.npmjs.com/package/superagent)
 
 payjs.cn的nodejs封装。关于payjs，[可以参考这里](https://help.payjs.cn/)。
 
