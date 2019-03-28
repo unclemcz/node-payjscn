@@ -1,0 +1,14 @@
+{
+  "name": "node-payjscn",
+  "version": "0.0.1",
+  "description": "payjs.cn的nodejs封装",
+  "main": "pay.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "unclemcz@qq.com",
+  "license": "MIT",
+  "dependencies": {
+    "superagent": "^4.1.0"
+  }
+}
