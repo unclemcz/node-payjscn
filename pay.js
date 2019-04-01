@@ -19,15 +19,22 @@ var urlbank     = 'https://payjs.cn/api/bank';
 var key = cfg.payjskey;
 
 
-const toQueryString = (obj) => Object.keys(obj)
-  .filter(key => key !== 'sign' && obj[key] !== undefined && obj[key] !== '')
-  .sort()
-  .map(key => {
-    if (/^http(s)?:\/\//.test(obj[key])) { return key + '=' + encodeURI(obj[key]) } else { return key + '=' + obj[key] }
-  })
-  .join('&');
+function toQueryString(obj) {
+  return Object.keys(obj).filter(function(key) {
+    return key !== 'sign' && obj[key] !== undefined && obj[key] !== '';
+  }).sort().map(function(key) {
+    if (/^http(s)?:\/\//.test(obj[key])) {
+      return key + '=' + encodeURI(obj[key]);
+    } else {
+      return key + '=' + obj[key];
+    }
+  }).join('&');
+};
 
-const md5 = (str, encoding = 'utf8') => crypto.createHash('md5').update(str, encoding).digest('hex');
+function md5(str) {
+  var encoding = arguments[1] !== (void 0) ? arguments[1] : 'utf8';
+  return crypto.createHash('md5').update(str, encoding).digest('hex');
+};
 
 
 function signature(paramss) {
