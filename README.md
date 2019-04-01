@@ -1,4 +1,4 @@
-# <center>node-payjscn接口文档</center>
+# node-payjscn接口文档
 
 [![image](https://img.shields.io/badge/%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83-node4.4.5-blue.svg)](https://nodejs.org/)
 [![image](https://img.shields.io/badge/%E4%BE%9D%E8%B5%96-superagent-brightgreen.svg)](https://www.npmjs.com/package/superagent)
@@ -128,7 +128,7 @@ pay.notifyCheck()返回bool类型，校验成功返回true，否则返回false
 var params=req.body; //获取post的参数
 if(pay.notifyCheck(params)==true){
   //执行业务逻辑，成功后返回200
-    res.status(200); //注意要业务逻辑成功后返回
+    res.send('success'); //注意要业务逻辑成功后返回
 }else{
   //校验失败
   res.status(404);
