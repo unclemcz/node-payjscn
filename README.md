@@ -3,7 +3,7 @@
 [![image](https://img.shields.io/badge/%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83-node4.4.5-blue.svg)](https://nodejs.org/)
 [![image](https://img.shields.io/badge/%E4%BE%9D%E8%B5%96-superagent-brightgreen.svg)](https://www.npmjs.com/package/superagent)
 
-payjs.cn的nodejs封装。关于payjs，[可以参考这里](https://help.payjs.cn/)。
+payjs.cn的nodejs封装。关于payjs，[可以参考这里](https://payjs.cn/ref/ZGKXLZ)。
 
 ## 说明
 本项目包含两个你用得到的代码文件：config.js和pay.js，其中config.js是配置文件，需要你在这里配置payjs的商户码和授权码，pay.js是功能代码文件；由于仅封装了payjs接口的调用、签名生成、异步签名校验等功能，每个接口返回的是一个JSON格式数据，需要你结合业务代码自行处理，所有接口返回的数据格式属性，请直接参考[payjs](https://help.payjs.cn/)的官方文档，这里不再解释。
