@@ -71,3 +71,21 @@ pay.refund(params,function (msg) {
   console.log(msg);
   /**TODO 这里处理业务逻辑 */
 });
+
+
+//基于expressjs的回调示例
+//异步通知，/notifyCheck为你的自定义回调地址
+router.post('/notifyCheck', function(req, res, next) {
+  var params=req.body;
+  if(pay.notifyCheck(params)==true){ //签名校验成功
+    if(params.return_code==1){
+      //业务逻辑
+      res.send('success');
+    }else{
+      res.status(404);
+    }
+  }else{
+    //校验失败
+    res.status(404);
+  }
+});
